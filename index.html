@@ -1,0 +1,49 @@
+<!-- Watch Now বাটন (ঐ ওয়েবসাইটের অরিজিনাল জিআইএফ ইমেজ দেওয়া হয়েছে) -->
+    <div class="action-button">
+        <a href="#" id="manualLink">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8Mm7ScJmEYoXBcvN4-IURldD1YxYWPI677GoHqZ0rUkezc5fgvQrOQtQ4SHUJL2WjcsaBU-5E9FiZVm9PJiCqlEIzuJ_WLcOd03OKAnG2GbpRa67-L3q2ShL4nnukYQdDAltmKXaO2zC4yaWtcgMCn5cpLijkDxq194E7rb6pUuPUp-CDfA6p57lCveCW/s1600/ezgif-7156bf537953b7.gif" alt="Watch Now">
+        </a>
+    </div>
+
+    <!-- রিডাইরেক্ট টাইমার মেসেজ -->
+    <div class="timer-text" id="timerMsg">দয়া করে অপেক্ষা করুন, <span id="countdown" style="color:red;">10</span> সেকেন্ড পর রিডাইরেক্ট হবে...</div>
+
+    <!-- জাভাস্ক্রিপ্ট (Auto Redirect Logic) -->
+    <script>
+        // এখানে আপনার কাঙ্খিত রিডাইরেক্ট লিংকের URL দিন
+        var targetUrl = "https://your-target-website-link.com"; 
+        
+        // কত সেকেন্ড পর রিডাইরেক্ট করতে চান (এখানে ১০ সেকেন্ড দেওয়া আছে)
+        var totalSeconds = 10; 
+        var timeLeft = totalSeconds;
+        
+        var countdownElement = document.getElementById('countdown');
+        var timerMsg = document.getElementById('timerMsg');
+        var progressFill = document.getElementById('progressFill');
+        var manualLink = document.getElementById('manualLink');
+        
+        // কেউ যদি "Watch Now" বাটনে ক্লিক করে, তবে সাথে সাথে রিডাইরেক্ট হবে
+        manualLink.href = targetUrl;
+
+        // প্রোগ্রেস বার অ্যানিমেশন স্টার্ট করা
+        setTimeout(() => {
+            progressFill.style.width = "100%";
+        }, 100); // ১০০ মিলিসেকেন্ড পর অ্যানিমেশন শুরু হবে
+
+        // টাইমার লজিক
+        var timer = setInterval(function() {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                timerMsg.innerHTML = "<span style='color:green;'>রিডাইরেক্ট হচ্ছে...</span>";
+                
+                // রিডাইরেক্ট করার ফাংশন
+                window.location.href = targetUrl;
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
